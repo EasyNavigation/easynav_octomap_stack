@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>EasyNav Costmap Stack: Main Page</title>
+<title>EasyNav Costmap Stack: easynav_octomap_stack</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -83,10 +83,54 @@ $(function(){ initResizable(false); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">EasyNav Costmap Stack Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">easynav_octomap_stack </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_README"></a></p>
+<p>This stack is part of the Easy Navigation (EasyNav) project developed by the Intelligent Robotics Lab. It provides a ROS 2 lifecycle node for building and publishing Octomap-based 3D occupancy maps from sensor point cloud data.</p>
+<p>It is composed of the <b>octomap_maps_builder</b> package and the <b>octomap_maps_manager</b> package (currently under construction).</p>
+<p>The <code>OctomapMapsBuilderNode</code> subscribes to sensor point cloud topics, processes and filters the data, and incrementally builds an Octomap representation of the environment. It publishes the resulting maps as ROS messages in both binary and full map formats.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Installation</h1>
+<p>Clone the repository into your ROS 2 workspace: </p><div class="fragment"><div class="line">cd ~/ros2_ws/src</div>
+<div class="line">git clone &lt;repository-url&gt;</div>
+<div class="line">cd ..</div>
+<div class="line">rosdep install --from-paths src --ignore-src -r -y</div>
+<div class="line">colcon build --packages-select easynav_octomap_maps_builder</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
+Usage</h1>
+<p>Source your workspace: </p><div class="fragment"><div class="line">source ~/ros2_ws/install/setup.bash</div>
+</div><!-- fragment --><p> Run the lifecycle node: </p><div class="fragment"><div class="line">ros2 run easynav_octomap_maps_builder octomap_maps_builder_node</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
+Parameters</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Parameter   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Default   </th><th class="markdownTableHeadNone">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>sensor_topic</code>   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone"><code>"map"</code>   </td><td class="markdownTableBodyNone">Topic name for incoming sensor point clouds.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>downsample_resolution</code>   </td><td class="markdownTableBodyNone">double   </td><td class="markdownTableBodyNone"><code>1.0</code>   </td><td class="markdownTableBodyNone">Downsampling resolution for input point clouds.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>perception_default_frame</code>   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone"><code>"map"</code>   </td><td class="markdownTableBodyNone">Default target frame for perception fusion.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>sensor_model.max_range</code>   </td><td class="markdownTableBodyNone">double   </td><td class="markdownTableBodyNone"><code>90.0</code>   </td><td class="markdownTableBodyNone">Maximum sensor range for raycasting.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>resolution</code>   </td><td class="markdownTableBodyNone">double   </td><td class="markdownTableBodyNone"><code>1.0</code>   </td><td class="markdownTableBodyNone">Resolution of the OctoMap octree.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>base_frame_id</code>   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone"><code>"base_link"</code>   </td><td class="markdownTableBodyNone">Robot base frame ID.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>occupancy_min_z</code>   </td><td class="markdownTableBodyNone">double   </td><td class="markdownTableBodyNone"><code>0.1</code>   </td><td class="markdownTableBodyNone">Minimum z height for occupancy filtering.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>occupancy_max_z</code>   </td><td class="markdownTableBodyNone">double   </td><td class="markdownTableBodyNone"><code>10.0</code>   </td><td class="markdownTableBodyNone">Maximum z height for occupancy filtering.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>publish_binary_map</code>   </td><td class="markdownTableBodyNone">bool   </td><td class="markdownTableBodyNone"><code>true</code>   </td><td class="markdownTableBodyNone">Enable publishing of binary octomap message.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>publish_full_map</code>   </td><td class="markdownTableBodyNone">bool   </td><td class="markdownTableBodyNone"><code>true</code>   </td><td class="markdownTableBodyNone">Enable publishing of full octomap message.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>world_frame_id</code>   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone"><code>"map"</code>   </td><td class="markdownTableBodyNone">Global coordinate frame for map integration.   </td></tr>
+</table>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
 <!-- start footer part -->
