@@ -1,6 +1,8 @@
 # easynav_octomap_stack
 
-This stack is part of the Easy Navigation (EasyNav) project developed by the Intelligent Robotics Lab. It provides a ROS 2 lifecycle node for building and publishing Octomap-based 3D occupancy maps from sensor point cloud data.
+This stack is part of the Easy Navigation (EasyNav) project developed by the Intelligent Robotics Lab. Ir building elevation grid maps
+from point cloud data. The node subscribes to a sensor topic, processes the incoming point cloud data, downsamples it, and
+publishes a grid_map_msgs::msg::GridMap message. 
 
 It is composed of the **octomap_maps_builder** package and the **octomap_maps_manager** package (currently under construction).
 
@@ -12,7 +14,7 @@ The `OctomapMapsBuilderNode` subscribes to sensor point cloud topics, processes 
 Clone the repository into your ROS 2 workspace:
 ```bash
 cd ~/ros2_ws/src
-git clone <repository-url>
+git clone https://github.com/EasyNavigation/easynav_octomap_stack.git
 cd ..
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --packages-select easynav_octomap_maps_builder

@@ -26,9 +26,6 @@ find_package(visualization_msgs REQUIRED)
 find_package(PCL REQUIRED)
 include_directories(${PCL_INCLUDE_DIRS})
 
-
-find_package(Eigen3 REQUIRED) 
-
 find_package(ament_cmake_auto REQUIRED)
 ament_auto_find_build_dependencies()
 find_package(OCTOMAP REQUIRED)
