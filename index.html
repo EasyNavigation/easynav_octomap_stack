@@ -88,13 +88,13 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md_README"></a></p>
-<p>This stack is part of the Easy Navigation (EasyNav) project developed by the Intelligent Robotics Lab. It provides a ROS 2 lifecycle node for building and publishing Octomap-based 3D occupancy maps from sensor point cloud data.</p>
+<p>This stack is part of the Easy Navigation (EasyNav) project developed by the Intelligent Robotics Lab. Ir building elevation grid maps from point cloud data. The node subscribes to a sensor topic, processes the incoming point cloud data, downsamples it, and publishes a grid_map_msgs::msg::GridMap message.</p>
 <p>It is composed of the <b>octomap_maps_builder</b> package and the <b>octomap_maps_manager</b> package (currently under construction).</p>
 <p>The <code>OctomapMapsBuilderNode</code> subscribes to sensor point cloud topics, processes and filters the data, and incrementally builds an Octomap representation of the environment. It publishes the resulting maps as ROS messages in both binary and full map formats.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Installation</h1>
 <p>Clone the repository into your ROS 2 workspace: </p><div class="fragment"><div class="line">cd ~/ros2_ws/src</div>
-<div class="line">git clone &lt;repository-url&gt;</div>
+<div class="line">git clone https://github.com/EasyNavigation/easynav_octomap_stack.git</div>
 <div class="line">cd ..</div>
 <div class="line">rosdep install --from-paths src --ignore-src -r -y</div>
 <div class="line">colcon build --packages-select easynav_octomap_maps_builder</div>
