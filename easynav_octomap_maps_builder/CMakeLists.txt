@@ -21,9 +21,13 @@ find_package(octomap_msgs REQUIRED)
 find_package(octomap_ros REQUIRED)
 find_package(pcl_conversions REQUIRED)
 find_package(pcl_ros REQUIRED)
+find_package(visualization_msgs REQUIRED)
 
 find_package(PCL REQUIRED)
 include_directories(${PCL_INCLUDE_DIRS})
+
+
+find_package(Eigen3 REQUIRED) 
 
 find_package(ament_cmake_auto REQUIRED)
 ament_auto_find_build_dependencies()
