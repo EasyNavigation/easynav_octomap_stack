@@ -15,6 +15,7 @@ Clone the repository into your ROS 2 workspace:
 ```bash
 cd ~/ros2_ws/src
 git clone https://github.com/EasyNavigation/easynav_octomap_stack.git
+vcs import < easynav_octomap_stack/thirdparty.repos
 cd ..
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --packages-select easynav_octomap_maps_builder
@@ -26,16 +27,33 @@ Source your workspace:
 ```bash
 source ~/ros2_ws/install/setup.bash
 ```
-Run the lifecycle node:
-```bash
-ros2 run easynav_octomap_maps_builder octomap_maps_builder_node
+
+Create a parameter YAML file (e.g., `params.yaml`) with the following content:
+
+```yaml
+octomap_maps_builder_node:
+  ros__parameters:
+    use_sim_time: true
+    sensors: [map]
+    downsample_resolution: 0.1
+    perception_default_frame: map
+    map:
+      topic: map
+      type: sensor_msgs/msg/PointCloud2
+      group: points
+```
+
+Run the node using the parameter file with this command:
+```
+ros2 run easynav_octomap_maps_builder octomap_maps_builder_main \
+--ros-args --params-file src/easynav_octomap_stack/params.yaml
 ```
 
 ## Parameters
 
 | Parameter               | Type   | Default      | Description                                    |
 |-------------------------|--------|--------------|------------------------------------------------|
-| `sensor_topic`          | string | `"map"`      | Topic name for incoming sensor point clouds.  |
+| `sensors`          | list | -      | Topic names for incoming sensor point clouds.  |
 | `downsample_resolution` | double | `1.0`        | Downsampling resolution for input point clouds.|
 | `perception_default_frame` | string | `"map"`  | Default target frame for perception fusion.   |
 | `sensor_model.max_range`| double | `90.0`       | Maximum sensor range for raycasting.           |
@@ -46,3 +64,4 @@ ros2 run easynav_octomap_maps_builder octomap_maps_builder_node
 | `publish_binary_map`    | bool   | `true`       | Enable publishing of binary octomap message.   |
 | `publish_full_map`      | bool   | `true`       | Enable publishing of full octomap message.     |
 | `world_frame_id`        | string | `"map"`      | Global coordinate frame for map integration.   |
+
