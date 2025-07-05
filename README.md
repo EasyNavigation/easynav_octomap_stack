@@ -11,7 +11,8 @@ The `OctomapMapsBuilderNode` subscribes to sensor point cloud topics, processes 
 
 ## Installation
 
-Clone the repository into your ROS 2 workspace:
+Clone the repository into your ROS 2 workspace. Temporarilly you will need to install octomap-ros from a ThirdParties:
+
 ```bash
 cd ~/ros2_ws/src
 git clone https://github.com/EasyNavigation/easynav_octomap_stack.git

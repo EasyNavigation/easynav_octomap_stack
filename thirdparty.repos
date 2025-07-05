@@ -1,0 +1,5 @@
+repositories:
+  ThirdParty/octomap_ros:
+    type: git
+    url: https://github.com/estherag/octomap_ros.git
+    version: ros2
