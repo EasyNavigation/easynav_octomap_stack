@@ -31,7 +31,6 @@ jobs:
           package-name: easynav_octomap_maps_builder
           target-ros2-distro: rolling
           vcs-repo-file-url: ${GITHUB_WORKSPACE}/.github/thirdparty.repos
-          build-dependencies: all
           skip-test: true
           colcon-defaults: |
             {
