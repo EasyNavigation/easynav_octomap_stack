@@ -18,7 +18,7 @@ find_package(tf2_ros REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(easynav_common REQUIRED)
 find_package(octomap_msgs REQUIRED)
-# find_package(octomap_ros REQUIRED)
+find_package(octomap_ros REQUIRED)
 find_package(pcl_conversions REQUIRED)
 find_package(pcl_ros REQUIRED)
 find_package(visualization_msgs REQUIRED)
@@ -39,6 +39,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 # Link against ROS2 targets and external libs
 target_link_libraries(${PROJECT_NAME} PUBLIC
   ${octomap_msgs_TARGETS}
+  ${octomap_ros_TARGETS}
   ${sensor_msgs_TARGETS}
   ${visualization_msgs_TARGETS}
   ${OCTOMAP_LIBRARIES}
