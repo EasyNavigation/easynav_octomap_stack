@@ -1,0 +1,10 @@
+octomap_maps_builder_node:
+  ros__parameters:
+    use_sim_time: true
+    sensors: [map]
+    downsample_resolution: 0.1
+    perception_default_frame: map
+    map:
+      topic: map
+      type: sensor_msgs/msg/PointCloud2
+      group: points

@@ -31,18 +31,18 @@ jobs:
           package-name: easynav_octomap_maps_builder
           target-ros2-distro: rolling
           vcs-repo-file-url: ${GITHUB_WORKSPACE}/.github/thirdparty.repos
-          skip-test: true
+          skip-tests: true
           colcon-defaults: |
             {
               "build": {
                 "packages-up-to": true,
-                  "mixin": ["coverage-gcc"]
+                "mixin": ["coverage-gcc"]
               }
             }
           colcon-mixin-repository: https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml
 
       - name: Codecov
-        uses: codecov/codecov-action@v5.4.2
+        uses: codecov/codecov-action@v5.4.0
         with:
           files: ros_ws/lcov/total_coverage.info
           flags: unittests
