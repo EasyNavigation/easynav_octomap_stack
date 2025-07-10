@@ -93,22 +93,36 @@ $(function(){ initResizable(false); });
 <p>The <code>OctomapMapsBuilderNode</code> subscribes to sensor point cloud topics, processes and filters the data, and incrementally builds an Octomap representation of the environment. It publishes the resulting maps as ROS messages in both binary and full map formats.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Installation</h1>
-<p>Clone the repository into your ROS 2 workspace: </p><div class="fragment"><div class="line">cd ~/ros2_ws/src</div>
+<p>Clone the repository into your ROS 2 workspace. Temporarilly you will need to install octomap-ros from a ThirdParties:</p>
+<div class="fragment"><div class="line">cd ~/ros2_ws/src</div>
 <div class="line">git clone https://github.com/EasyNavigation/easynav_octomap_stack.git</div>
+<div class="line">vcs import &lt; easynav_octomap_stack/thirdparty.repos</div>
 <div class="line">cd ..</div>
 <div class="line">rosdep install --from-paths src --ignore-src -r -y</div>
 <div class="line">colcon build --packages-select easynav_octomap_maps_builder</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
 Usage</h1>
 <p>Source your workspace: </p><div class="fragment"><div class="line">source ~/ros2_ws/install/setup.bash</div>
-</div><!-- fragment --><p> Run the lifecycle node: </p><div class="fragment"><div class="line">ros2 run easynav_octomap_maps_builder octomap_maps_builder_node</div>
+</div><!-- fragment --><p>Create a parameter YAML file (e.g., <code>params.yaml</code>) with the following content:</p>
+<div class="fragment"><div class="line">octomap_maps_builder_node:</div>
+<div class="line">  ros__parameters:</div>
+<div class="line">    use_sim_time: true</div>
+<div class="line">    sensors: [map]</div>
+<div class="line">    downsample_resolution: 0.1</div>
+<div class="line">    perception_default_frame: map</div>
+<div class="line">    map:</div>
+<div class="line">      topic: map</div>
+<div class="line">      type: sensor_msgs/msg/PointCloud2</div>
+<div class="line">      group: points</div>
+</div><!-- fragment --><p>Run the node using the parameter file with this command: </p><div class="fragment"><div class="line">ros2 run easynav_octomap_maps_builder octomap_maps_builder_main \</div>
+<div class="line">--ros-args --params-file src/easynav_octomap_stack/params.yaml</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
 Parameters</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Parameter   </th><th class="markdownTableHeadNone">Type   </th><th class="markdownTableHeadNone">Default   </th><th class="markdownTableHeadNone">Description    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>sensor_topic</code>   </td><td class="markdownTableBodyNone">string   </td><td class="markdownTableBodyNone"><code>"map"</code>   </td><td class="markdownTableBodyNone">Topic name for incoming sensor point clouds.    </td></tr>
+<td class="markdownTableBodyNone"><code>sensors</code>   </td><td class="markdownTableBodyNone">list   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">Topic names for incoming sensor point clouds.    </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>downsample_resolution</code>   </td><td class="markdownTableBodyNone">double   </td><td class="markdownTableBodyNone"><code>1.0</code>   </td><td class="markdownTableBodyNone">Downsampling resolution for input point clouds.    </td></tr>
 <tr class="markdownTableRowOdd">
