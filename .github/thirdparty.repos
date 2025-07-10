@@ -3,3 +3,7 @@ repositories:
     type: git
     url: https://github.com/EasyNavigation/EasyNavigation.git
     version: rolling
+  ThirdParty/octomap_ros:
+    type: git
+    url: https://github.com/estherag/octomap_ros.git
+    version: ros2

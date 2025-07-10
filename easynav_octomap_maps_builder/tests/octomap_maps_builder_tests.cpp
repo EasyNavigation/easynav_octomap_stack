@@ -1,6 +1,6 @@
 // Copyright 2025 Intelligent Robotics Lab
 //
-// This file is part of the project Easy Navigation (EasyNav in sh0rt)
+// This file is part of the project Easy Navigation (EasyNav in short)
 // licensed under the GNU General Public License v3.0.
 // See <http://www.gnu.org/licenses/> for details.
 //
@@ -11,7 +11,7 @@
 //
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 // GNU General Public License for more details.
 //
 // You should have received a copy of the GNU General Public License
@@ -43,8 +43,7 @@ TEST_F(OctomapMapsBuilderTest, test_configure_success)
 {
   auto options = rclcpp::NodeOptions();
 
-  options.append_parameter_override("map_types", std::vector<std::string>{"pcl"});
-  options.append_parameter_override("sensor_topic", "points");
+  options.append_parameter_override("downsample_resolution", 0.3);
 
   auto node = std::make_shared<easynav::OctomapMapsBuilderNode>(options);
 
@@ -52,5 +51,5 @@ TEST_F(OctomapMapsBuilderTest, test_configure_success)
   auto result = node->on_configure(state);
 
   EXPECT_EQ(result,
-    rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn::SUCCESS);
+            rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn::SUCCESS);
 }
