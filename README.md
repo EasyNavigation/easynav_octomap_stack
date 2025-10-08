@@ -1,5 +1,9 @@
 # easynav_octomap_stack
 
+> [!WARNING]
+> The development of the plugins in this repo has been moved to [easynav_plugins](https://github.com/EasyNavigation/easynav_plugins).
+
+
 This stack is part of the Easy Navigation (EasyNav) project developed by the Intelligent Robotics Lab. Ir building elevation grid maps
 from point cloud data. The node subscribes to a sensor topic, processes the incoming point cloud data, downsamples it, and
 publishes a grid_map_msgs::msg::GridMap message. 
